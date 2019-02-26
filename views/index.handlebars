@@ -1,0 +1,12 @@
+<h1 class="text-center mb-3">{{title}}</h1>
+<form action="/download" method="get" class="mb-4">
+    <input type="submit" value="download" class="btn btn-primary btn-block" action="/download" method="get" >
+</form>
+<form ref='uploadForm' 
+			id='uploadForm' 
+			action='/upload' 
+			method='post' 
+			encType="multipart/form-data">
+				<input type="file" name="sampleFile" />
+				<input type='submit' value='Upload!' />
+</form>

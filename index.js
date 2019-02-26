@@ -1,9 +1,11 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const fileUpload = require('express-fileupload');
+var bodyParser = require("body-parser");
 const testFolder = './uploads/';
 const fs = require('fs');
 let filelist = [];
+let links=[];
 fs.readdir(testFolder, (err, files) => {
     files.forEach(file => {
         //console.log(file);
@@ -11,6 +13,7 @@ fs.readdir(testFolder, (err, files) => {
     });
 });
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(fileUpload());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -41,8 +44,17 @@ app.post('/upload', function (req, res) {
 });
 app.get('/', (req, res) => res.render('index', {
     title: 'Files App',
-    filelist
+    filelist,
+    links
 }));
+app.post('/links',(req,res)=>
+{
+    /*res.send(req.body.name);
+    console.log(req.body.name);*/
+    links.push(req.body.name);
+    res.redirect('/');
+    
+});
 app.get('/downloadFile/:file', (req, res) => {
     console.log(req.params.file);
     res.download('./uploads/' + req.params.file.substring(1), (err) => {

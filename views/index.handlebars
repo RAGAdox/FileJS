@@ -1,19 +1,34 @@
 <h1 class="text-center mb-3">{{title}}</h1>
+<button type="button" onClick="refreshPage()" class="btn btn-primary btn-block">Refresh Page</button>
 <form ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data" class="text-center">
     <input type="file" name="sampleFile" class="btn btn-secondary btn-block" />
     <br>
     <input type='submit' value='Upload!' class="btn btn-success"  />
 </form>
 <br>
+<form action="/links" method="POST">
+    <input type="text" name="name" class="form-control">
+    <input type="submit" value="Add Link" class="btn btn-primary btn-block">
+</form>
+{{#each links}}
+   <hr/><a href="{{this}}" target="_blank">{{this}}</a><br>
+{{/each}}
 <table class="table table-hover">
     <tbody>
         {{#each filelist}}
         <tr>
             <form action="/downloadFile/:{{this}}" method="get">
                 <td>{{this}}</td>
-                <td> <input type="submit" value="download" class="btn btn-primary btn-block"></td>
+                <td> <input type="submit" value="download" class="btn btn-primary"></td>
             </form>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+
+<script>
+function refreshPage(){
+    window.location.reload();
+} 
+</script>

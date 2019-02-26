@@ -1,12 +1,20 @@
 <h1 class="text-center mb-3">{{title}}</h1>
 <form action="/download" method="get" class="mb-4">
-    <input type="submit" value="download" class="btn btn-primary btn-block" action="/download" method="get" >
+    <input type="submit" value="download" class="btn btn-primary">
 </form>
 <form ref='uploadForm' 
 			id='uploadForm' 
 			action='/upload' 
 			method='post' 
 			encType="multipart/form-data">
-				<input type="file" name="sampleFile" />
-				<input type='submit' value='Upload!' />
+				<input type="file" name="sampleFile" class="btn btn-secondary"/>
+				<input type='submit' value='Upload!' class="btn btn-secondary"/>
 </form>
+<br>
+<ul class="list-group">
+    {{#each filelist}}
+    <form action="/downloadFile/:{{this}}" method="get" class="mb-4">
+    <li class="list-group-item">{{this}} <input type="submit" value="download" class="btn btn-primary"></li>
+    </form>
+    {{/each}}
+</ul>

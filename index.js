@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const fileUpload = require('express-fileupload');
 var bodyParser = require("body-parser");
+const path=require("path");
 const testFolder = './uploads/';
 const fs = require('fs');
 let filelist = [];

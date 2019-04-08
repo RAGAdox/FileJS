@@ -22,7 +22,7 @@ app.set("view engine", "handlebars");
 app.post("/upload", function(req, res) {
   let sampleFile;
   let uploadPath;
-  //console.log(req.files);
+  
   if (Object.keys(req.files).length == 0) {
     res.status(400).send("No files were uploaded.");
     return;
